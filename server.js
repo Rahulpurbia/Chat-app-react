@@ -3,12 +3,11 @@ const app = express();
 const http = require("http");
 const cors = require("cors");
 const { Server } = require("socket.io");
+const path = require("path");
 app.use(cors());
 
 const server = http.createServer(app);
-app.get("/", (req, res) => {
-  res.send("hello");
-});
+
 const io = new Server(server, {
   cors: {
     origin: "http://localhost:3000",
@@ -35,6 +34,9 @@ io.on("connection", (socket) => {
 
 if (process.env.NODE_ENV == "production") {
   app.use(express.static("client/build"));
+  app.get("/", (req, res) => {
+    res.render(path.resolve(__dirname, "client/build", "index.html"));
+  });
 }
 const port = process.env.PORT || 3001;
 server.listen(port, () => {
