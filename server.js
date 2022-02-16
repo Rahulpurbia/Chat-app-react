@@ -6,7 +6,9 @@ const { Server } = require("socket.io");
 app.use(cors());
 
 const server = http.createServer(app);
-
+app.get("/", (req, res) => {
+  res.send("hello");
+});
 const io = new Server(server, {
   cors: {
     origin: "http://localhost:3000",
@@ -31,7 +33,7 @@ io.on("connection", (socket) => {
   });
 });
 
-if (process.env.NODE.ENV == "production") {
+if (process.env.NODE_ENV == "production") {
   app.use(express.static("client/build"));
 }
 const port = process.env.PORT || 3001;
