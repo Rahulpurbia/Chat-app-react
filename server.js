@@ -14,21 +14,30 @@ const io = new Server(server, {
     methods: ["GET", "POST"],
   },
 });
+const Name = {};
+const Roomid = {};
 
 io.on("connection", (socket) => {
-  console.log(`User Connected: ${socket.id}`);
   socket.on("join_room", (data) => {
-    console.log(data.Name, data.RoomId);
-    socket.join(data.RoomId);
+    Name[socket.id] = data.name;
+    Roomid[socket.id] = data.roomid;
+    socket.to(data.roomid).emit("user_joined", data);
+    socket.join(data.roomid);
   });
 
   socket.on("send_msg", (data) => {
-    console.log(data);
     socket.to(data.roomid).emit("receive_msg", data);
   });
 
   socket.on("disconnect", () => {
-    console.log("User Disconnected", socket.id);
+    data = {
+      name: Name[socket.id],
+      roomid: Roomid[socket.id],
+      message: `${Name[socket.id]} left the chat`,
+      joined: true,
+      time: "",
+    };
+    socket.to(Roomid[socket.id]).emit("left", data);
   });
 });
 

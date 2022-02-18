@@ -3,7 +3,7 @@ import JoinRoom from "./components/JoinRoom";
 import Chat from "./components/Chat";
 import { useState } from "react";
 import io from "socket.io-client";
-const socket = io.connect("https://chatapphere.herokuapp.com/");
+const socket = io.connect("http://localhost:3001");
 
 function App() {
   const [Name, setName] = useState("");

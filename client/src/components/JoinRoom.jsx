@@ -13,8 +13,14 @@ const JoinRoom = ({
     if (Name !== "" && RoomId !== "") {
       setjoined(true);
       const data = {
-        Name,
-        RoomId,
+        name: Name,
+        message: `${Name} joined the chat`,
+        roomid: RoomId,
+        time:
+          new Date(Date.now()).getHours() +
+          ":" +
+          new Date(Date.now()).getMinutes(),
+        joined: true,
       };
       socket.emit("join_room", data);
     }
