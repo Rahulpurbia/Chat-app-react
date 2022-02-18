@@ -39,6 +39,7 @@ io.on("connection", (socket) => {
     };
     socket.to(Roomid[socket.id]).emit("left", data);
   });
+  delete Name[socket.id];
 });
 
 if (process.env.NODE_ENV == "production") {
