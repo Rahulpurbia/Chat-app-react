@@ -38,7 +38,6 @@ const Chat = ({ socket, Name, RoomId }) => {
     });
     socket.on("user_joined", (data) => {
       setAllmsg((prev) => [...prev, data]);
-      // console.log(`user joined ${data.time}`);
     });
 
     socket.on("left", (data) => {
