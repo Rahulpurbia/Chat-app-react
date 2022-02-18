@@ -29,6 +29,7 @@ const Chat = ({ socket, Name, RoomId }) => {
       socket.emit("send_msg", data);
     }
     setMessage("");
+    if (Hide === false) setHide(true);
   };
 
   useEffect(() => {
@@ -105,6 +106,9 @@ const Chat = ({ socket, Name, RoomId }) => {
             }}
           ></i>
           <input
+            onFocus={() => {
+              if (Hide === false) setHide(true);
+            }}
             autoFocus
             type="text"
             autoComplete="off"
