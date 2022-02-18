@@ -118,15 +118,8 @@ const Chat = ({ socket, Name, RoomId }) => {
 
           <button onClick={Sendmsg}> &#8594;</button>
         </footer>
-        <div
-          className="picker"
-          onBlur={(e) => {
-            setHide((prev) => !prev);
-          }}
-          tabIndex="1"
-        >
-          <Picker pickerStyle={PickerStyle} onEmojiClick={onEmojiClick} />
-        </div>
+
+        <Picker pickerStyle={PickerStyle} onEmojiClick={onEmojiClick} />
       </div>
     </>
   );

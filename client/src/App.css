@@ -84,6 +84,9 @@
   gap: 4px;
 }
 .chatnav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   background-color: #424955;
   text-align: center;
