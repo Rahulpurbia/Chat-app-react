@@ -80,6 +80,8 @@
   background-repeat: no-repeat;
 }
 .chatcontainer {
+  word-wrap: break-word;
+
   background: url("https://wallpapercave.com/wp/wp10254557.jpg");
   background-size: cover;
 
@@ -144,6 +146,7 @@
   display: none !important;
 } */
 .chatinput input {
+  word-wrap: break-word;
   width: 80%;
   height: 100%;
   background: transparent;
